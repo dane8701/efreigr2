@@ -1,3 +1,4 @@
+import 'package:efreigrp2/view/my_background.dart';
 import 'package:flutter/material.dart';
 
 class MyDashboard extends StatefulWidget {
@@ -14,9 +15,18 @@ class _MyDashboardState extends State<MyDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Seconde page"),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+
       ),
-      body: Text("mon adresse mail est : ${widget.mail} avec  ${widget.password} comme mot de passe"),
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.purple,
+      body: Stack(
+        children: [
+          MyBackground(),
+          Center(child: Text("mon adresse mail est : ${widget.mail} avec  ${widget.password} comme mot de passe")),
+        ],
+      ),
     );
   }
 }

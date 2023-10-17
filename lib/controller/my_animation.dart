@@ -20,9 +20,9 @@ class _MyAnimationState extends State<MyAnimation> with SingleTickerProviderStat
     super.initState();
     _controller = AnimationController(
         vsync: this,
-      duration: Duration(seconds: 2)
+      duration: Duration(seconds: 5)
     );
-    CurvedAnimation curves = CurvedAnimation(parent:_controller, curve: Curves.linear);
+    CurvedAnimation curves = CurvedAnimation(parent:_controller, curve: Curves.bounceInOut);
     animationPosition = Tween<Offset>(
       begin: Offset(0,5),
       end:Offset.zero,
