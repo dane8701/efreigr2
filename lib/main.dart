@@ -1,5 +1,6 @@
 import 'package:efreigrp2/controller/my_animation.dart';
 import 'package:efreigrp2/controller/my_firestore_helper.dart';
+import 'package:efreigrp2/controller/my_permission_access_photo.dart';
 import 'package:efreigrp2/globale.dart';
 import 'package:efreigrp2/my_dashboard.dart';
 import 'package:efreigrp2/view/my_background.dart';
@@ -12,6 +13,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  MyPermissionAccessPhoto().init();
   runApp(const MyApp());
 }
 

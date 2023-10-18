@@ -1,6 +1,9 @@
+import 'dart:typed_data';
+
 import 'package:efreigrp2/controller/my_firestore_helper.dart';
 import 'package:efreigrp2/globale.dart';
 import 'package:efreigrp2/view/my_background.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 class MyDashboard extends StatefulWidget {
@@ -18,6 +21,46 @@ class _MyDashboardState extends State<MyDashboard> {
   bool isRecorded = false;
   TextEditingController nom = TextEditingController();
   TextEditingController prenom = TextEditingController();
+  String? nameImage;
+  Uint8List? dataImage;
+
+  //méthode
+  showImagePopUp(){
+    showDialog(
+      barrierDismissible: false,
+        context: context, 
+        builder: (context){
+          return AlertDialog(
+            title: Text("Souhaitez-vous enregistrer cette image ?"),
+            content: Image.memory(dataImage!),
+            actions: [
+              TextButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+                  }, 
+                  child: const Text("NON")
+              ),
+              TextButton(onPressed: (){
+                Navigator.pop(context);
+              }, child: const Text("OUI")),
+            ],
+            
+          );
+        }
+    );
+  }
+  pickImage()async {
+    
+    FilePickerResult? resultat = await FilePicker.platform.pickFiles(
+      withData: true,
+      type: FileType.image
+    );
+    if(resultat != null){
+      nameImage = resultat.files.first.name;
+      dataImage = resultat.files.first.bytes;
+      showImagePopUp();
+    }
+  }
 
 
 
@@ -39,9 +82,14 @@ class _MyDashboardState extends State<MyDashboard> {
             children: [
               //image
               const Spacer(),
-              CircleAvatar(
-                radius: 80,
-                backgroundImage: NetworkImage(moi.avatar ?? imageDefault),
+              GestureDetector(
+                onTap: (){
+                  pickImage();
+                },
+                child: CircleAvatar(
+                  radius: 80,
+                  backgroundImage: NetworkImage(moi.avatar ?? imageDefault),
+                ),
               ),
               const SizedBox(height: 10,),
               (isRecorded)?TextField(
