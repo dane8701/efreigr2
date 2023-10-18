@@ -5,6 +5,7 @@ import 'package:efreigrp2/globale.dart';
 import 'package:efreigrp2/view/My_Map.dart';
 import 'package:efreigrp2/view/my_all_personn.dart';
 import 'package:efreigrp2/view/my_background.dart';
+import 'package:efreigrp2/view/my_check_map.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -244,7 +245,7 @@ class _MyDashboardState extends State<MyDashboard> {
   }
   Widget bodyPage(){
     switch(indexCurrent){
-      case 0 : return const MyMap();
+      case 0 : return const MyCheckMaps();
       case 1 : return const MyAllPersonn();
       default: return const Text("Impossible");
     }
