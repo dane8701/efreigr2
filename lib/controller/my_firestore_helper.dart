@@ -45,6 +45,9 @@ class MyFirestoreHelper {
     cloudUsers.doc(uid).set(data);
 
   }
+  updateUser(String uid , Map<String,dynamic> data){
+    cloudUsers.doc(uid).update(data);
+  }
 
 
 

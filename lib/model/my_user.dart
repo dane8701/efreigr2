@@ -12,6 +12,10 @@ class MyUser{
   String? avatar;
   List? favoris;
 
+  String get fullName {
+    return prenom + " " + nom;
+  }
+
 
   //constructeur
 
