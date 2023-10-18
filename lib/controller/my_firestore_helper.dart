@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:efreigrp2/model/my_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
@@ -19,7 +20,7 @@ class MyFirestoreHelper {
 
 
   //creation d'un utilisateur
-  CreateUserDataBase(String email , String password) async {
+  Future <MyUser>CreateUserDataBase(String email , String password) async {
     UserCredential credential = await auth.createUserWithEmailAndPassword(email: email, password: password);
     String uid = credential.user!.uid;
     Map<String,dynamic> data = {
@@ -28,7 +29,15 @@ class MyFirestoreHelper {
       "EMAIL":email
     };
     addUser(uid, data);
+    return getUser(uid);
 
+
+
+  }
+
+  Future<MyUser> getUser(String uid) async {
+    DocumentSnapshot snapshot = await cloudUsers.doc(uid).get();
+    return MyUser.dataBase(snapshot);
 
   }
 
@@ -40,6 +49,11 @@ class MyFirestoreHelper {
 
 
   //connexion d'un utilisateur
+  Future<MyUser>ConnectUserDataBase(String email, String password) async {
+      UserCredential credential = await auth.signInWithEmailAndPassword(email: email, password: password);
+      String uid = credential.user!.uid;
+      return getUser(uid);
+  }
 
 
 

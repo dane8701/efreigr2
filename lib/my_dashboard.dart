@@ -1,3 +1,4 @@
+import 'package:efreigrp2/globale.dart';
 import 'package:efreigrp2/view/my_background.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,7 @@ class _MyDashboardState extends State<MyDashboard> {
       body: Stack(
         children: [
           MyBackground(),
-          Center(child: Text("mon adresse mail est : ${widget.mail} avec  ${widget.password} comme mot de passe")),
+          Center(child: Text("mon adresse mail est : ${moi.email}"))
         ],
       ),
     );

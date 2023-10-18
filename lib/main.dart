@@ -1,5 +1,6 @@
 import 'package:efreigrp2/controller/my_animation.dart';
 import 'package:efreigrp2/controller/my_firestore_helper.dart';
+import 'package:efreigrp2/globale.dart';
 import 'package:efreigrp2/my_dashboard.dart';
 import 'package:efreigrp2/view/my_background.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,28 @@ class _MyHomePageState extends State<MyHomePage> {
   //variables
   String email= "";
   TextEditingController password = TextEditingController();
+
+
+  //méthode
+  popError(){
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context){
+          return AlertDialog(
+            title: const Text("adresse mail ou mot de passe erronée"),
+            actions: [
+              TextButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  child: const Text("OK")
+              ),
+            ],
+          );
+        }
+    );
+  }
 
 
 
@@ -126,16 +149,51 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: ElevatedButton(
                       onPressed: (){
                         print("Je m'isncris");
-                        MyFirestoreHelper().CreateUserDataBase(email, password.text);
-                        Navigator.push(context, MaterialPageRoute(
-                            builder: (context){
-                              return MyDashboard(mail: email,password: password.text,);
-                            }
-                        ));
+                        MyFirestoreHelper().CreateUserDataBase(email, password.text).then((value) {
+                          setState(() {
+                            moi = value;
+                          });
+                          Navigator.push(context, MaterialPageRoute(
+                              builder: (context){
+                                return MyDashboard(mail: email,password: password.text,);
+                              }
+                          ));
+                        }).catchError((onError){
+                          popError();
+                        });
+
                       },
                       child: Text("Inscription")
                   ),
-                )
+                ),
+
+
+                MyAnimation(
+                  duree: 5,
+                  child: ElevatedButton(
+                      onPressed: (){
+                        MyFirestoreHelper().ConnectUserDataBase(email, password.text)
+                            .then((value) {
+                              setState(() {
+                                moi = value;
+                              });
+                          Navigator.push(context, MaterialPageRoute(
+                              builder: (context){
+                                return MyDashboard(mail: email,password: password.text,);
+                              }
+                          ));
+
+                        })
+                            .catchError((onError){
+                          // un message d'erreur
+                          popError();
+                        });
+
+
+                      },
+                      child: Text("Connexion")
+                  ),
+                ),
 
 
 
