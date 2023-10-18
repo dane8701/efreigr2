@@ -1,4 +1,5 @@
 import 'package:efreigrp2/controller/my_animation.dart';
+import 'package:efreigrp2/controller/my_firestore_helper.dart';
 import 'package:efreigrp2/my_dashboard.dart';
 import 'package:efreigrp2/view/my_background.dart';
 import 'package:flutter/material.dart';
@@ -125,6 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: ElevatedButton(
                       onPressed: (){
                         print("Je m'isncris");
+                        MyFirestoreHelper().CreateUserDataBase(email, password.text);
                         Navigator.push(context, MaterialPageRoute(
                             builder: (context){
                               return MyDashboard(mail: email,password: password.text,);

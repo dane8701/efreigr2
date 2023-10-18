@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "711075801410",
+    "project_id": "efreigr2",
+    "storage_bucket": "efreigr2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711075801410:android:a92df6f0e823a8b02040db",
+        "android_client_info": {
+          "package_name": "com.example.efreigrp2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNv16Qa7bn_7NF_g6OkSvbNUBF05OHKSQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
