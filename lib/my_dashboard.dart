@@ -2,6 +2,8 @@ import 'dart:typed_data';
 
 import 'package:efreigrp2/controller/my_firestore_helper.dart';
 import 'package:efreigrp2/globale.dart';
+import 'package:efreigrp2/view/My_Map.dart';
+import 'package:efreigrp2/view/my_all_personn.dart';
 import 'package:efreigrp2/view/my_background.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,7 @@ class _MyDashboardState extends State<MyDashboard> {
   TextEditingController prenom = TextEditingController();
   String? nameImage;
   Uint8List? dataImage;
+  int indexCurrent = 0;
 
   //méthode
   showImagePopUp(){
@@ -31,7 +34,7 @@ class _MyDashboardState extends State<MyDashboard> {
         context: context, 
         builder: (context){
           return AlertDialog(
-            title: Text("Souhaitez-vous enregistrer cette image ?"),
+            title: const Text("Souhaitez-vous enregistrer cette image ?"),
             content: Image.memory(dataImage!),
             actions: [
               TextButton(
@@ -41,6 +44,17 @@ class _MyDashboardState extends State<MyDashboard> {
                   child: const Text("NON")
               ),
               TextButton(onPressed: (){
+                //enregistrer les données
+                MyFirestoreHelper().StorageFiles(datasImage: dataImage!, nameImage: nameImage!, dossier: "IMAGES", uid: moi.uid).then((value) {
+                  setState(() {
+                    moi.avatar = value;
+                  });
+                  Map<String,dynamic> data = {
+                    "AVATAR":moi.avatar
+                  };
+                  MyFirestoreHelper().updateUser(moi.uid, data);
+                });
+
                 Navigator.pop(context);
               }, child: const Text("OUI")),
             ],
@@ -67,6 +81,25 @@ class _MyDashboardState extends State<MyDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: indexCurrent,
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.map),
+            label: "Carte"
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+            label: "Personne"
+          ),
+        ],
+        onTap: (value){
+          setState(() {
+            indexCurrent = value;
+          });
+
+        },
+      ),
       drawer: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width *0.80,
@@ -203,9 +236,17 @@ class _MyDashboardState extends State<MyDashboard> {
       body: Stack(
         children: [
           const MyBackground(),
-          Center(child: Text("mon adresse mail est : ${moi.email}"))
+          bodyPage(),
+          //Center(child: Text("mon adresse mail est : ${moi.email}"))
         ],
       ),
     );
+  }
+  Widget bodyPage(){
+    switch(indexCurrent){
+      case 0 : return const MyMap();
+      case 1 : return const MyAllPersonn();
+      default: return const Text("Impossible");
+    }
   }
 }

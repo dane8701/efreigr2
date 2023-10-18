@@ -1,4 +1,6 @@
 
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:efreigrp2/model/my_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -56,6 +58,13 @@ class MyFirestoreHelper {
       UserCredential credential = await auth.signInWithEmailAndPassword(email: email, password: password);
       String uid = credential.user!.uid;
       return getUser(uid);
+  }
+
+  Future<String>StorageFiles({required Uint8List datasImage,required String nameImage,required String dossier, required String uid}) async {
+    TaskSnapshot snapshot = await storage.ref("$dossier/$uid/$nameImage").putData(datasImage);
+    String url = await snapshot.ref.getDownloadURL();
+    return url ;
+
   }
 
 
