@@ -11,6 +11,7 @@ class MyUser{
   int? tel;
   String? avatar;
   List? favoris;
+  GeoPoint? gps;
 
   String get fullName {
     return prenom + " " + nom;
@@ -35,6 +36,7 @@ class MyUser{
     tel = data["TEL"] ?? 0;
     favoris = data["FAVORIS"]??[];
     avatar = data["AVATAR"]??imageDefault;
+    gps = data["GPS"]??const GeoPoint(0, 0);
 
   }
 
