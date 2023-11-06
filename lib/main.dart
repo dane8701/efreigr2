@@ -6,10 +6,12 @@ import 'package:efreigrp2/my_dashboard.dart';
 import 'package:efreigrp2/view/my_background.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = "pk_test_51GQ8hTDVXOXIy9UxpbYscBnuiq9FTW63gCk5agdRp2JOjym1NvC03WVaEBdj6wwFkJzAeCit9ZA77sBTeQHaI9rI00fsdMSCog";
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

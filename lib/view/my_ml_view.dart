@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:efreigrp2/controller/my_paiment_helper.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
@@ -133,7 +134,15 @@ class _MLViewState extends State<MLView> {
                   child: Text("Etiquetage")
               ),
 
-              Text(afficheLabel)
+              Text(afficheLabel),
+
+
+              ElevatedButton(
+                  onPressed: (){
+                    MyPaymentHelper().makePayment(amount: '24', currency: 'eur');
+                  },
+                  child: Text("Payer")
+              ),
 
 
             ],

@@ -27,7 +27,7 @@ class _MyDashboardState extends State<MyDashboard> {
   TextEditingController prenom = TextEditingController();
   String? nameImage;
   Uint8List? dataImage;
-  int indexCurrent = 0;
+  int indexCurrent = 1;
 
   //méthode
   showImagePopUp(){
