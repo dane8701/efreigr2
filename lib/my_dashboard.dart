@@ -6,6 +6,7 @@ import 'package:efreigrp2/view/My_Map.dart';
 import 'package:efreigrp2/view/my_all_personn.dart';
 import 'package:efreigrp2/view/my_background.dart';
 import 'package:efreigrp2/view/my_check_map.dart';
+import 'package:efreigrp2/view/my_ml_view.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -93,6 +94,11 @@ class _MyDashboardState extends State<MyDashboard> {
               icon: Icon(Icons.person),
             label: "Personne"
           ),
+
+          BottomNavigationBarItem(
+              icon: Icon(Icons.rocket_launch),
+            label: "Machine Learning"
+          )
         ],
         onTap: (value){
           setState(() {
@@ -247,6 +253,7 @@ class _MyDashboardState extends State<MyDashboard> {
     switch(indexCurrent){
       case 0 : return const MyCheckMaps();
       case 1 : return const MyAllPersonn();
+      case 2 : return const MLView();
       default: return const Text("Impossible");
     }
   }
