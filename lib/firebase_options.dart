@@ -29,12 +29,12 @@ class DefaultFirebaseOptions {
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+              'you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+              'you can reconfigure this by running the FlutterFire CLI again.',
         );
       default:
         throw UnsupportedError(
@@ -44,38 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCvGW1BdNwkSGalw4hZ-Uj5Cuj5_qHB79g',
-    appId: '1:711075801410:web:f5139cc7cda146512040db',
-    messagingSenderId: '711075801410',
-    projectId: 'efreigr2',
-    authDomain: 'efreigr2.firebaseapp.com',
-    storageBucket: 'efreigr2.appspot.com',
-    measurementId: 'G-Q1XJWWXG5L',
+      apiKey: "AIzaSyAV4I1p8YAur-Ijrcp1-07XA8niWFNg8cA",
+      authDomain: "mydashboard-8e6c4.firebaseapp.com",
+      projectId: "mydashboard-8e6c4",
+      storageBucket: "mydashboard-8e6c4.appspot.com",
+      messagingSenderId: "916994586971",
+      appId: "1:916994586971:web:7a2fd1c6f190c43fb2027e",
+      measurementId: "G-5R72TC4FVR"
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBNv16Qa7bn_7NF_g6OkSvbNUBF05OHKSQ',
-    appId: '1:711075801410:android:a92df6f0e823a8b02040db',
-    messagingSenderId: '711075801410',
-    projectId: 'efreigr2',
-    storageBucket: 'efreigr2.appspot.com',
+    apiKey: 'AIzaSyAX99RXjrjQ1aOb_xT1ve4NswNM3jz769E',
+    appId: '1:916994586971:android:2c24b826ce8dc326b2027e',
+    messagingSenderId: '916994586971',
+    projectId: 'mydashboard-8e6c4',
+    storageBucket: 'mydashboard-8e6c4.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBjbALLLT-pnkVTw6HAp3ykDb7OHBAgW_Y',
-    appId: '1:711075801410:ios:2eb03d7d556c35172040db',
-    messagingSenderId: '711075801410',
-    projectId: 'efreigr2',
-    storageBucket: 'efreigr2.appspot.com',
+    apiKey: 'AIzaSyAdDqAy3qs98yHBHGSbm7j9Z8AIimHJIiE',
+    appId: '1:916994586971:ios:2502d51cbbd1282eb2027e',
+    messagingSenderId: '916994586971',
+    projectId: 'mydashboard-8e6c4',
+    storageBucket: 'mydashboard-8e6c4.appspot.com',
     iosBundleId: 'com.example.efreigrp2',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBjbALLLT-pnkVTw6HAp3ykDb7OHBAgW_Y',
-    appId: '1:711075801410:ios:01a1a9753c7c7d142040db',
-    messagingSenderId: '711075801410',
-    projectId: 'efreigr2',
-    storageBucket: 'efreigr2.appspot.com',
+    apiKey: 'AIzaSyAdDqAy3qs98yHBHGSbm7j9Z8AIimHJIiE',
+    appId: '1:916994586971:ios:cd85e86d09298dc5b2027e',
+    messagingSenderId: '916994586971',
+    projectId: 'mydashboard-8e6c4',
+    storageBucket: 'mydashboard-8e6c4.appspot.com',
     iosBundleId: 'com.example.efreigrp2.RunnerTests',
   );
 }
