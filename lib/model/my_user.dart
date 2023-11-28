@@ -40,4 +40,15 @@ class MyUser{
 
   }
 
+  MyUser.fromJson(Map<String, dynamic> json) {
+    uid = json['uid'];
+    nom = json['nom'];
+    prenom = json['prenom'];
+    email = json['email'];
+    tel = json['tel'];
+    avatar = json['avatar'];
+    favoris = json['favoris'];
+    gps = json['gps'];
+  }
+
 }

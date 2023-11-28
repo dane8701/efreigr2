@@ -1,7 +1,8 @@
 import 'dart:typed_data';
-
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:efreigrp2/controller/my_firestore_helper.dart';
 import 'package:efreigrp2/globale.dart';
+import 'package:efreigrp2/main.dart';
 import 'package:efreigrp2/view/My_Map.dart';
 import 'package:efreigrp2/view/my_all_personn.dart';
 import 'package:efreigrp2/view/my_background.dart';
@@ -209,13 +210,43 @@ class _MyDashboardState extends State<MyDashboard> {
                 ],
               ),
 
-
               //adresse mail
-
               const Spacer(),
+              AnimatedButton(
+                  text: "Supprimer mon compte",
+                  icon: Icons.delete_forever,
+                  color: Colors.black,
+                  width: 180,
+                  pressEvent: () {
+                    AwesomeDialog(
+                      context: context,
+                      dialogType: DialogType.warning,
+                      animType: AnimType.topSlide,
+                      showCloseIcon: true,
+                      title: "Supression",
+                      desc: "Êtes-vous sûr de vouloir supprimer définitivement votre compte ?",
+                      btnCancelOnPress: () {  },
+                      btnOkOnPress: () {
+                        MyFirestoreHelper().DeleteAccount(moi);
+
+                        Navigator.push(context, MaterialPageRoute(
+                            builder: (context){
+                              return MyApp();
+                            }
+                        ));
+                      }
+                    ).show();
+                  },
+              ),
+
               ElevatedButton.icon(
                   onPressed: (){
-
+                      MyFirestoreHelper().SignOut();
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context){
+                            return MyApp();
+                          }
+                      ));
                   },
                   icon: const Icon(Icons.exit_to_app),
                   label: Text('Deconnexion'),
